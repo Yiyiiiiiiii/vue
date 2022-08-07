@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="vue.min.js"></script>
+    <script>
+        // 组件
+        var myButton = {
+            // 组件内的data是一个函数
+            data() {
+                return {
+                    count: 0,
+                };
+            },
+            template: `<button @click="count++">当前点击了{{count}}次</button>`,
+        };
+        // 全局组件
+        // Vue.component("组件名称",myButton)
+        // Vue.component("MyButton", myButton)
+        // new Vue({
+
+        //     template: `<div>
+        //         <MyButton />
+        //         </div>`
+        // }).$mount("#app")
+
+
+        var Title = {
+            // template:`<h1>一级标题</h1>`
+            // 声明组件的属性
+            props: ["biaoti1", "biaoti2"],
+            template: `<h1>{{biaoti1}}</h1>`
+        }
+
+        // 局部注册组件
+        new Vue({
+            components: {
+                // 组件名：组件
+                MyButton: myButton,
+                Title,
+            },
+            template: `<div>
+                     <MyButton />
+                     <Title biaoti1="标题1" />
+                      </div>`,
+        }).$mount("#app");
+    </script>
+</body>
+
+</html>
